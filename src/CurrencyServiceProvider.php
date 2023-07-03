@@ -3,7 +3,6 @@
 namespace Torann\Currency;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 
 class CurrencyServiceProvider extends ServiceProvider
 {
@@ -15,6 +14,8 @@ class CurrencyServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerCurrency();
+
+        $this->registerManager();
 
         if ($this->app->runningInConsole()) {
             $this->registerResources();
@@ -34,6 +35,18 @@ class CurrencyServiceProvider extends ServiceProvider
                 $app->config->get('currency', []),
                 $app['cache']
             );
+        });
+    }
+
+    /**
+     * Register currency manager.
+     *
+     * @return void
+     */
+    public function registerManager()
+    {
+        $this->app->singleton(SourceManager::class, function ($app) {
+            return new SourceManager($app);
         });
     }
 
@@ -80,6 +93,6 @@ class CurrencyServiceProvider extends ServiceProvider
      */
     protected function isLumen()
     {
-        return Str::contains($this->app->version(), 'Lumen') === true;
+        return str_contains($this->app->version(), 'Lumen') === true;
     }
 }

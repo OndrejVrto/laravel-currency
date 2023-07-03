@@ -140,7 +140,7 @@ return [
         'format' => 'P1,0.00',
         'exchange_rate' => 0.00,
     ],
-    'BYN' => [
+    'BYR' => [
         'name' => 'Belarussian Ruble',
         'symbol' => 'р.',
         'format' => '1 0,00 р.',
@@ -308,12 +308,6 @@ return [
         'format' => '1,0.00D',
         'exchange_rate' => 0.00,
     ],
-    'GNF' => [
-        'name' => 'Guinean franc',
-        'symbol' => 'FG',
-        'format' => '1,0.00FG',
-        'exchange_rate' => 0.00,
-    ],
     'GTQ' => [
         'name' => 'Guatemala, Quetzal',
         'symbol' => 'Q',
@@ -412,8 +406,8 @@ return [
     ],
     'KES' => [
         'name' => 'Kenyan Shilling',
-        'symbol' => 'Ksh',
-        'format' => 'Ksh1,0.00',
+        'symbol' => 'S',
+        'format' => 'S1,0.00',
         'exchange_rate' => 0.00,
     ],
     'KGS' => [
@@ -542,7 +536,7 @@ return [
         'format' => 'MOP$1,0.00',
         'exchange_rate' => 0.00,
     ],
-    'MRU' => [
+    'MRO' => [
         'name' => 'Mauritania, Ouguiya',
         'symbol' => 'UM',
         'format' => '1,0.00UM',
@@ -722,10 +716,10 @@ return [
         'format' => '₨1,0.00',
         'exchange_rate' => 0.00,
     ],
-    'SDG' => [
-        'name' => 'Sudanese Pound',
-        'symbol' => 'ج.س',
-        'format' => '1,0.00 Sd',
+    'SDD' => [
+        'name' => 'Sudanese Dinar',
+        'symbol' => 'LSd',
+        'format' => '1,0.00LSd',
         'exchange_rate' => 0.00,
     ],
     'SEK' => [
@@ -764,13 +758,7 @@ return [
         'format' => '$1,0.00',
         'exchange_rate' => 0.00,
     ],
-    'SSP' => [
-        'name' => 'South Sudanese pound',
-        'symbol' => 'SS£',
-        'format' => 'SS £1,0.00',
-        'exchange_rate' => 0.00,
-    ],
-    'STN' => [
+    'STD' => [
         'name' => 'Sao Tome and Principe, Dobra',
         'symbol' => 'Db',
         'format' => 'Db1,0.00',
@@ -878,10 +866,10 @@ return [
         'format' => '1 0,00 сўм',
         'exchange_rate' => 0.00,
     ],
-    'VES' => [
-        'name' => 'Venezuela Bolivares soberano',
-        'symbol' => 'Bs. S.',
-        'format' => 'Bs. S. 1,0.00',
+    'VEF' => [
+        'name' => 'Venezuela Bolivares Fuertes',
+        'symbol' => 'Bs. F.',
+        'format' => 'Bs. F. 1,0.00',
         'exchange_rate' => 0.00,
     ],
     'VND' => [
@@ -942,12 +930,6 @@ return [
         'name' => 'Zambia Kwacha',
         'symbol' => 'ZK',
         'format' => 'ZK1,0.00',
-        'exchange_rate' => 0.00,
-    ],
-    'ZWL' => [
-        'name' => 'Zimbabwean dollar',
-        'symbol' => '$',
-        'format' => '$1,0.00',
         'exchange_rate' => 0.00,
     ],
 ];

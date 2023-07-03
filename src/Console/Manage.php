@@ -82,8 +82,7 @@ class Manage extends Command
     protected function add($currency)
     {
         if (($data = $this->getCurrency($currency)) === null) {
-            $this->error("Currency \"{$currency}\" not found");
-            return;
+            return $this->error("Currency \"{$currency}\" not found");
         }
 
         $this->output->write("Adding {$currency} currency...");
@@ -92,7 +91,8 @@ class Manage extends Command
 
         if (is_string($result = $this->storage->create($data))) {
             $this->output->writeln('<error>' . ($result ?: 'Failed') . '</error>');
-        } else {
+        }
+        else {
             $this->output->writeln("<info>success</info>");
         }
     }
@@ -107,15 +107,15 @@ class Manage extends Command
     protected function update($currency)
     {
         if (($data = $this->getCurrency($currency)) === null) {
-            $this->error("Currency \"{$currency}\" not found");
-            return;
+            return $this->error("Currency \"{$currency}\" not found");
         }
 
         $this->output->write("Updating {$currency} currency...");
 
         if (is_string($result = $this->storage->update($currency, $data))) {
             $this->output->writeln('<error>' . ($result ?: 'Failed') . '</error>');
-        } else {
+        }
+        else {
             $this->output->writeln("<info>success</info>");
         }
     }
@@ -133,7 +133,8 @@ class Manage extends Command
 
         if (is_string($result = $this->storage->delete($currency))) {
             $this->output->writeln('<error>' . ($result ?: 'Failed') . '</error>');
-        } else {
+        }
+        else {
             $this->output->writeln("<info>success</info>");
         }
     }
@@ -159,7 +160,7 @@ class Manage extends Command
     /**
      * Get action argument.
      *
-     * @param array $validActions
+     * @param  array $validActions
      *
      * @return array
      */

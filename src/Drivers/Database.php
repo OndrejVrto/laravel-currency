@@ -46,7 +46,7 @@ class Database extends AbstractDriver
             'symbol' => '',
             'format' => '',
             'exchange_rate' => 1,
-            'active' => 1,
+            'active' => 0,
             'created_at' => $created,
             'updated_at' => $created,
         ], $params);

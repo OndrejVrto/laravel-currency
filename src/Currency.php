@@ -69,7 +69,7 @@ class Currency
      * @param string $to
      * @param bool   $format
      *
-     * @return string|null
+     * @return string
      */
     public function convert($amount, $from = null, $to = null, $format = true)
     {
@@ -86,16 +86,12 @@ class Currency
             return null;
         }
 
-        try {
-            // Convert amount
-            if ($from === $to) {
-                $value = $amount;
-            } else {
-                $value = ($amount * $to_rate) / $from_rate;
-            }
-        } catch (\Exception $e) {
-            // Prevent invalid conversion or division by zero errors
-            return null;
+        // Convert amount
+        if ($from === $to) {
+            $value = $amount;
+        }
+        else {
+            $value = ($amount * $to_rate) / $from_rate;
         }
 
         // Should the result be formatted?
@@ -138,18 +134,18 @@ class Currency
         // Match decimal and thousand separators
         preg_match_all('/[\s\',.!]/', $format, $separators);
 
-        if ($thousand = Arr::get($separators, '0.0', null)) {
+        if ($thousand = array_get($separators, '0.0', null)) {
             if ($thousand == '!') {
                 $thousand = '';
             }
         }
 
-        $decimal = Arr::get($separators, '0.1', null);
+        $decimal = array_get($separators, '0.1', null);
 
         // Match format for decimals count
         preg_match($valRegex, $format, $valFormat);
 
-        $valFormat = Arr::get($valFormat, 0, 0);
+        $valFormat = array_get($valFormat, 0, 0);
 
         // Count decimals length
         $decimals = $decimal ? strlen(substr(strrchr($valFormat, $decimal), 1)) : 0;
@@ -240,7 +236,8 @@ class Currency
         if ($this->currencies_cache === null) {
             if (config('app.debug', false) === true) {
                 $this->currencies_cache = $this->getDriver()->all();
-            } else {
+            }
+            else {
                 $this->currencies_cache = $this->cache->rememberForever('torann.currency', function () {
                     return $this->getDriver()->all();
                 });
@@ -257,7 +254,7 @@ class Currency
      */
     public function getActiveCurrencies()
     {
-        return array_filter($this->getCurrencies(), function ($currency) {
+        return array_filter($this->getCurrencies(), function($currency) {
             return $currency['active'] == true;
         });
     }
@@ -359,8 +356,8 @@ class Currency
     /**
      * Dynamically call the default driver instance.
      *
-     * @param string $method
-     * @param array  $parameters
+     * @param  string $method
+     * @param  array  $parameters
      *
      * @return mixed
      */
