@@ -1,31 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCurrencyTable extends Migration
-{
-    /**
-     * Currencies table name
-     *
-     * @var string
-     */
-    protected $table_name;
+return new class () extends Migration {
+    protected string $table_name;
 
-    /**
-     * Create a new migration instance.
-     */
-    public function __construct()
-    {
+    public function __construct() {
         $this->table_name = config('currency.drivers.database.table');
     }
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
+    public function up(): void {
         Schema::create($this->table_name, function ($table) {
             $table->increments('id')->unsigned();
             $table->string('name');
@@ -38,13 +25,7 @@ class CreateCurrencyTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
+    public function down(): void {
         Schema::drop($this->table_name);
     }
-}
+};

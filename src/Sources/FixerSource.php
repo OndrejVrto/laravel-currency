@@ -72,7 +72,7 @@ class FixerSource extends Source implements SourceInterface
         switch ($response['error']['code']) {
             case 101:
                 // No API Key was specified or an invalid API Key was specified.
-                throw InvalidArgumentException::invalidApiKey();
+                throw InvalidArgumentException::invalidApiKey($this->name());
             case 104:
                 // The maximum allowed API amount of monthly API requests has been reached.
                 throw LimitationException::apiRequestsLimitReached();

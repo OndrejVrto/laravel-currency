@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('currency')) {
+if (!function_exists('laravel_currency')) {
     /**
      * Convert given number.
      *
@@ -11,7 +11,7 @@ if (!function_exists('currency')) {
      *
      * @return \Torann\Currency\Currency|string
      */
-    function currency($amount = null, $from = null, $to = null, $format = true)
+    function laravel_currency($amount = null, $from = null, $to = null, $format = true)
     {
         if (is_null($amount)) {
             return app('currency');
@@ -21,7 +21,7 @@ if (!function_exists('currency')) {
     }
 }
 
-if (!function_exists('currency_format')) {
+if (!function_exists('laravel_currency_format')) {
     /**
      * Format given number.
      *
@@ -31,7 +31,7 @@ if (!function_exists('currency_format')) {
      *
      * @return string
      */
-    function currency_format($amount = null, $currency = null, $include_symbol = true)
+    function laravel_currency_format($amount = null, $currency = null, $include_symbol = true)
     {
         return app('currency')->format($amount, $currency, $include_symbol);
     }

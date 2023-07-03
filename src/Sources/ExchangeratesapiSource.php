@@ -13,7 +13,7 @@ class ExchangeratesapiSource extends Source implements SourceInterface
      *
      * @var string
      */
-    protected $baseUrl = 'https://api.exchangeratesapi.io';
+    protected $baseUrl = 'http://api.exchangeratesapi.io';
 
     /**
      * Get an array of exchange rates for the default currency.
@@ -51,6 +51,7 @@ class ExchangeratesapiSource extends Source implements SourceInterface
     {
         return [
             'base' => $this->defaultCurrency,
+            'access_key' => $this->accessKey,
             'currencies' => collect($this->currencies())->implode(','),
         ];
     }
@@ -66,11 +67,15 @@ class ExchangeratesapiSource extends Source implements SourceInterface
      */
     protected function handleErrors($response)
     {
-        if (str_contains($response['error'], 'not supported')) {
+        if (str_contains($response['error']['type'], 'missing_access_key')) {
+            throw InvalidArgumentException::invalidApiKey($this->name());
+        }
+
+        if (str_contains($response['error']['info'], 'not supported')) {
             throw InvalidArgumentException::currencyNotSupported($this->name(), $this->defaultCurrency);
         }
 
-        if (str_contains($response['error'], 'invalid')) {
+        if (str_contains($response['error']['info'], 'invalid')) {
             throw InvalidArgumentException::currencyNotSupported($this->name());
         }
     }

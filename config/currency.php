@@ -54,6 +54,10 @@ return [
             'key' => env('CURRENCY_OPENEXCHANGERATES_KEY'),
         ],
 
+        'exchangeratesapi' => [
+            'key' => env('CURRENCY_EXCHANGERATESAPI_KEY'),
+        ],
+
     ],
 
     /*

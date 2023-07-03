@@ -70,6 +70,6 @@ class OpenexchangeratesSource extends Source implements SourceInterface
      */
     protected function handleErrors(array $response)
     {
-        throw new InvalidArgumentException($response['description']);
+        throw new InvalidArgumentException($response['error']['info']);
     }
 }

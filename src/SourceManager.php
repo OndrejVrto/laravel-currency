@@ -44,7 +44,7 @@ class SourceManager extends Manager
      */
     protected function createExchangeratesapiDriver()
     {
-        return $this->app->make(Sources\ExchangeratesapiSource::class);
+        return $this->container->make(Sources\ExchangeratesapiSource::class);
     }
 
     /**
@@ -54,7 +54,7 @@ class SourceManager extends Manager
      */
     protected function createFixerDriver()
     {
-        return $this->app->make(Sources\FixerSource::class);
+        return $this->container->make(Sources\FixerSource::class);
     }
 
     /**
@@ -64,7 +64,7 @@ class SourceManager extends Manager
      */
     protected function createCurrencylayerDriver()
     {
-        return $this->app->make(Sources\CurrencylayerSource::class);
+        return $this->container->make(Sources\CurrencylayerSource::class);
     }
 
     /**
@@ -74,7 +74,7 @@ class SourceManager extends Manager
      */
     protected function createOpenexchangeratesDriver()
     {
-        return $this->app->make(Sources\OpenexchangeratesSource::class);
+        return $this->container->make(Sources\OpenexchangeratesSource::class);
     }
 
     /**
@@ -91,7 +91,7 @@ class SourceManager extends Manager
             return parent::createDriver($driver);
         } catch (InvalidArgumentException $e) {
             if (class_exists($driver)) {
-                return $this->app->make($driver);
+                return $this->container->make($driver);
             }
 
             throw $e;
@@ -105,7 +105,7 @@ class SourceManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return $this->defaultSource ?? $this->app['config']['currency.source'];
+        return $this->defaultSource ?? $this->container['config']['currency.source'];
     }
 
     /**
